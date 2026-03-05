@@ -15,9 +15,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(auth_router)
-app.include_router(entries_router)
-app.include_router(users_router)
+from fastapi import APIRouter
+
+api_router = APIRouter(prefix="/api")
+api_router.include_router(auth_router)
+api_router.include_router(entries_router)
+api_router.include_router(users_router)
+
+app.include_router(api_router)
 
 
 @app.get("/")
