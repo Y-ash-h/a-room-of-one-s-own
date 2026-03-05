@@ -6,8 +6,8 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 # Load environment variables
 load_dotenv()
 
-# Vercel Postgres uses POSTGRES_URL or POSTGRES_URL_NON_POOLING
-DATABASE_URL = os.getenv("POSTGRES_URL_NON_POOLING", os.getenv("POSTGRES_URL", os.getenv("DATABASE_URL", "sqlite:///./cabinet.db")))
+# Neon uses DATABASE_URL
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./cabinet.db")
 
 # Neon / Render / Vercel Postgres supply "postgres://" but SQLAlchemy needs "postgresql://"
 if DATABASE_URL.startswith("postgres://"):
