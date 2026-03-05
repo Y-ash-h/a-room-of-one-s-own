@@ -4,6 +4,11 @@ from auth import router as auth_router
 from entries import router as entries_router
 from user import router as users_router
 from auth_utils import get_current_user
+from database import engine, Base
+import models
+
+# Automatically create database tables if they don't exist
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
