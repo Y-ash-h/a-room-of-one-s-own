@@ -1,19 +1,15 @@
 {
     "version": 2,
-    "buildCommand": "cd my-cabinet && npm install && npm run build",
-    "outputDirectory": "my-cabinet/dist",
+    "buildCommand": "cd my-cabinet && npm install && npm run build && cd .. && mkdir -p public && cp -r my-cabinet/dist/* public/",
+    "outputDirectory": "public",
     "rewrites": [
         {
             "source": "/api/(.*)",
             "destination": "/api/index"
         },
         {
-            "source": "/assets/(.*)",
-            "destination": "/assets/$1"
-        },
-        {
             "source": "/(.*)",
-            "destination": "/index.html"
+            "destination": "/$1"
         }
     ]
 }
