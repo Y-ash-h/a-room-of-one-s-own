@@ -901,10 +901,7 @@ export default function App() {
   const [themeName, setThemeName] = useState("light");
 
   const P = themeName === "light" ? LIGHT_P : DARK_P;
-  const API_URL = import.meta.env.VITE_API_URL ||
-    (window.location.hostname.includes("localhost") || window.location.hostname.includes("127.0.0.1")
-      ? "http://localhost:8000"
-      : "https://a-room-of-one-s-own.onrender.com");
+  const API_URL = import.meta.env.VITE_API_URL || "/api";
 
   const fetchEntries = async () => {
     const token = localStorage.getItem("cabinet_token");

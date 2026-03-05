@@ -1,0 +1,21 @@
+{
+    "version": 2,
+    "buildCommand": "cd my-cabinet && npm install && npm run build",
+    "outputDirectory": "my-cabinet/dist",
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/api/index"
+        },
+        {
+            "source": "/((?!api/).*)",
+            "destination": "/index.html"
+        }
+    ],
+    "functions": {
+        "api/index.py": {
+            "runtime": "python3.12",
+            "maxDuration": 30
+        }
+    }
+}
