@@ -1,7 +1,8 @@
 {
     "version": 2,
-    "buildCommand": "cd my-cabinet && npm install && npm run build && cd .. && mkdir -p public && cp -r my-cabinet/dist/* public/",
-    "outputDirectory": "public",
+    "framework": "vite",
+    "buildCommand": "cd my-cabinet && npm install && npm run build",
+    "outputDirectory": "my-cabinet/dist",
     "rewrites": [
         {
             "source": "/api/(.*)",
@@ -9,7 +10,7 @@
         },
         {
             "source": "/(.*)",
-            "destination": "/$1"
+            "destination": "/index.html"
         }
     ]
 }
