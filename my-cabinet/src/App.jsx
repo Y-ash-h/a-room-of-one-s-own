@@ -901,6 +901,7 @@ export default function App() {
   const [themeName, setThemeName] = useState("light");
 
   const P = themeName === "light" ? LIGHT_P : DARK_P;
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
   const fetchEntries = async () => {
     const token = localStorage.getItem("cabinet_token");
@@ -909,12 +910,12 @@ export default function App() {
       let res;
       if (token) {
         // Logged-in view: fetch the user's private entries
-        res = await fetch("http://localhost:8000/entries/", {
+        res = await fetch(`${API_URL}/entries/`, {
           headers: { "Authorization": `Bearer ${token}` }
         });
       } else {
         // Public view: fetch Kratika's profile
-        res = await fetch("http://localhost:8000/entries/public/kratika03");
+        res = await fetch(`${API_URL}/entries/public/kratika03`);
       }
 
       if (res.ok) {
@@ -950,7 +951,7 @@ export default function App() {
     const { id, ...postData } = e;
 
     try {
-      const res = await fetch("http://localhost:8000/entries/", {
+      const res = await fetch(`${API_URL}/entries/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -975,7 +976,7 @@ export default function App() {
     if (!token) return;
 
     try {
-      const res = await fetch(`http://localhost:8000/entries/${id}`, {
+      const res = await fetch(`${API_URL}/entries/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`
